@@ -1,0 +1,16 @@
+{
+	"server":"irc.yourserverhere.com",
+	"nick":"your_bot_nick",
+	"ident":"your_bot_password",
+	"port":6667,
+	"channels":[
+		"#example_channel1",
+		"#example_channel2"],
+	"users":{
+		"ops":[
+				"user1",
+				"user2"],
+		"mods":[
+				"user3",
+				"user4"]}
+}

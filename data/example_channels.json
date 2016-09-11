@@ -1,0 +1,14 @@
+{
+	"channels" : [{
+			"flavor" : 3,
+			"randomize_flavor" : false,
+			"channel" : "#example_channel1",
+			"announce_offline" : true
+		}, {
+			"flavor" : 8,
+			"randomize_flavor" : false,
+			"channel" : "#example_channel2",
+			"announce_offline" : false
+		}
+	]
+}
