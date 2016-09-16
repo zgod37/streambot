@@ -11,16 +11,26 @@ import org.json.JSONObject;
 
 public class BotConfig {
 
+    private static BotConfig instance;
+    
     private String server = "";
     private String nick = "";
     private String ident = "";
     private int port = -1;
+    private String clientID = "";
 
     private ArrayList<String> ops = new ArrayList<>();
     private ArrayList<String> mods = new ArrayList<>();
     private ArrayList<String> channels = new ArrayList<>();
 
-    public BotConfig() throws IOException {
+    public static BotConfig getInstance() throws IOException {
+        if (instance == null) {
+            instance = new BotConfig();
+        }
+        return instance;
+    }
+    
+    private BotConfig() throws IOException {
 
         String jsonText = new String(Files.readAllBytes(Paths.get("data" + File.separator + "config.json")));
         JSONObject json = new JSONObject(jsonText);
@@ -29,6 +39,7 @@ public class BotConfig {
         nick = json.getString("nick");
         ident = json.getString("ident");
         port = json.getInt("port");
+        clientID = json.getString("client_id");
 
         JSONArray jsonChannelsArray = json.getJSONArray("channels");
         for(int i=0; i<jsonChannelsArray.length(); i++) {
@@ -61,6 +72,10 @@ public class BotConfig {
 
     public int getPort() {
         return port;
+    }
+    
+    public String getClientID() {
+        return clientID;
     }
 
     public ArrayList<String> getChannels() {

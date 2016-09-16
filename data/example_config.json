@@ -1,8 +1,9 @@
 {
 	"server":"irc.yourserverhere.com",
-	"nick":"your_bot_nick",
-	"ident":"your_bot_password",
+	"nick":"bot_nick",
+	"ident":"bot_password",
 	"port":6667,
+	"client_id": "twitch_client_id",
 	"channels":[
 		"#example_channel1",
 		"#example_channel2"],

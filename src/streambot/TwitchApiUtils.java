@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -59,11 +60,18 @@ public class TwitchApiUtils {
 
     public static JSONObject getJsonObject(String url) {
         //build and return JSONObject from url
-
+        
         JSONObject json = null;
         try {
+            //grab client id
+            BotConfig config = BotConfig.getInstance();
+            String clientID = config.getClientID();
+            
             System.out.println("checking url - " + url);
-            InputStream inputStream = new URL(url).openStream();
+            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Client-ID", clientID);
+            InputStream inputStream = connection.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
             StringBuilder builder = new StringBuilder();
             int cp;

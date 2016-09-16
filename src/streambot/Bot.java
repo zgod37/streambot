@@ -10,7 +10,7 @@ import java.net.SocketException;
 
 public class Bot implements Runnable {
 
-    private static final String versionInfo = "mud shark bot 1.23 - added potential fix for nickname in use bug - close socket";
+    private static final String versionInfo = "mud shark bot 1.24 - added header to api request per new twitch rule";
     private static final String operChan = "#grigsby";
     
     StreamManager streamManager;
@@ -41,7 +41,7 @@ public class Bot implements Runnable {
             FileLogger.initializeLogger();
             FileLogger.logInfo("Bot started **************************************");
             
-            config = new BotConfig();
+            config = BotConfig.getInstance();
             streamManager = new StreamManager(config.getChannels());
 
             System.out.println("Starting thread.");
@@ -271,7 +271,6 @@ public class Bot implements Runnable {
 
             joinChannels();
         } catch (IOException e) {
-            System.out.println("Error connecting to server! " + e.getMessage());
             FileLogger.logInfo("Could not connect to server " + e.getMessage());
         }
     }
